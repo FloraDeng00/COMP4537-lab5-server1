@@ -8,8 +8,7 @@ document.getElementById("insertData").addEventListener("click", () => {
                 (5, 'John Smith', '1941-01-01'),
                 (6, 'Jack Ma', '1961-01-30'),
                 (7, 'Elon Musk', '1999-01-01')
-            ON DUPLICATE KEY UPDATE 
-                name = VALUES(name), dateOfBirth = VALUES(dateOfBirth);`
+            `
         })
     })
     .then(res => res.json())
