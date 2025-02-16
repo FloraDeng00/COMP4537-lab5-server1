@@ -7,13 +7,13 @@ document.getElementById("insertData").addEventListener("click", () => {
                 (4, 'Sara Brown', '1901-01-01'),
                 (5, 'John Smith', '1941-01-01'),
                 (6, 'Jack Ma', '1961-01-30'),
-                (7, 'Elon Musk', '1999-01-01')`
+                (7, 'Elon Musk', '1999-01-01')
+            ON DUPLICATE KEY UPDATE 
+                name = VALUES(name), dateOfBirth = VALUES(dateOfBirth);`
         })
     })
     .then(res => res.json())
-    .then(data => {
-        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
-    })
+    .then(data => document.getElementById("output").textContent = JSON.stringify(data, null, 2))
     .catch(error => console.error("❌ Error:", error));
 });
 
