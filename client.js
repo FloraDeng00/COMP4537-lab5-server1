@@ -23,12 +23,25 @@ document.getElementById("insertData").addEventListener("click", () => {
 
 document.getElementById("sendQuery").addEventListener("click", () => {
     const query = document.getElementById("queryInput").value.trim(); 
-    const method = query.toUpperCase().startsWith("SELECT") ? "GET" : "POST";  
+    const isSelect = query.toUpperCase().startsWith("SELECT");
+    const method = isSelect ? "GET" : "POST";  
     
-    fetch(`https://lionfish-app-unhlm.ondigitalocean.app?query=${encodeURIComponent(query)}`, { method })
+    const options = {
+        method: method,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    let url = "https://lionfish-app-unhlm.ondigitalocean.app";
+    if (isSelect) {
+        url += `?query=${encodeURIComponent(query)}`;
+    } else {
+        options.body = JSON.stringify({ query: query });
+    }
+    
+    fetch(url, options)
         .then(res => res.json())  
         .then(data => {
-   
             document.getElementById("output").textContent = JSON.stringify(data, null, 2);
         })
         .catch(error => {
