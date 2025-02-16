@@ -1,5 +1,5 @@
 document.getElementById("insertData").addEventListener("click", () => {
-    fetch("http://64.23.247.155:3000", { // Change URL when deployed
+    fetch("https://lionfish-app-unhlm.ondigitalocean.app", { // Updated Server 2 URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -16,7 +16,7 @@ document.getElementById("insertData").addEventListener("click", () => {
 document.getElementById("sendQuery").addEventListener("click", () => {
     const query = document.getElementById("queryInput").value;
     const method = query.trim().toUpperCase().startsWith("SELECT") ? "GET" : "POST";
-    fetch(`http://64.23.247.155:3000?query=${encodeURIComponent(query)}`, { method })
+    fetch(`https://lionfish-app-unhlm.ondigitalocean.app?query=${encodeURIComponent(query)}`, { method })
         .then(res => res.json())
         .then(data => document.getElementById("output").textContent = JSON.stringify(data, null, 2));
 });
