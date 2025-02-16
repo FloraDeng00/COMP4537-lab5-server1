@@ -11,7 +11,9 @@ document.getElementById("insertData").addEventListener("click", () => {
         })
     })
     .then(res => res.json())
-    .then(data => document.getElementById("output").textContent = JSON.stringify(data, null, 2))
+    .then(data => {
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    })
     .catch(error => console.error("❌ Error:", error));
 });
 
@@ -20,5 +22,7 @@ document.getElementById("sendQuery").addEventListener("click", () => {
     const method = query.trim().toUpperCase().startsWith("SELECT") ? "GET" : "POST";
     fetch(`https://lionfish-app-unhlm.ondigitalocean.app?query=${encodeURIComponent(query)}`, { method })
         .then(res => res.json())
-        .then(data => document.getElementById("output").textContent = JSON.stringify(data, null, 2));
+        .then(data => {
+            document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        });
 });
